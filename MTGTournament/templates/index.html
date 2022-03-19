@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Rankings
+{% endblock %}
+
+{% block main %}
+    <h2>Ranking Table</h2>
+    <table id="eloTable" class="table tablestriped">
+    <!--When a header is clicked, run the sortTable function, with a parameter,
+    0 for sorting by names, 1 for sorting by wins, 2 for sorting by losses, 3 for sorting by
+    draws and 4 for sorting by elo: -->
+    <style>
+        th {
+            cursor: pointer;
+        }
+    </style>
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Name<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(1)">Win<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(2)">Loss<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(3)">Draw<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(4)">Elo<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leaderboard in leaderboard %}
+                <tr>
+                    <td> {{ leaderboard["name"] }} </td>
+                    <td> {{ leaderboard["win"] }} </td>
+                    <td> {{ leaderboard["loss"] }} </td>
+                    <td> {{ leaderboard["draw"] }} </td>
+                    <td> {{ leaderboard["elo"] }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            {# <tr>
+                <td class="border-0 fw-bold text-start" colspan="4"><button class="btn btn-primary" type="submit">Create Tournament</button></td>
+            </tr> #}
+            {# <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+                <td class="border-0 w-bold text-end">{{ total | usd }}</td>
+            </tr> #}
+        </tfoot>
+    </table>
+<script src="static/script.js"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Report a result
+{% endblock %}
+
+{% block main %}
+    <div class="form-group mb-3">
+        <form action="/report" method="post">
+            <label class="control-label fs-5 mb-2">Report a result</label>
+            <div class="mb-2">
+                <label class="control-label fs-5">Player 1:</label>
+                <select id="player1" name="player1" class="mx-auto w-auto mb-3">
+                    <option disabled selected>Player 1</option>
+                    {% for players in players %}
+                    <option>{{ players["name"] }}</option>
+                    {% endfor %}
+                </select>
+                <select id="player1Score" name="player1Score">
+                    <option disabled selected>Score</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <label class="control-label fs-5">Player 2:</label>
+                <select id="player2" name="player2" class="mx-auto w-auto mb-3">
+                    <option disabled selected>Player 2</option>
+                    {% for players in players %}
+                    <option>{{ players["name"] }}</option>
+                    {% endfor %}
+                </select>
+                <select id="player2Score" name="player2Score">
+                    <option disabled selected>Score</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <button class="btn btn-success" type="submit">Report</button>
+        </form>
+{% endblock %}

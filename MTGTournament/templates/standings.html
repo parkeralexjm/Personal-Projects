@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Final Standings
+{% endblock %}
+
+{% block main %}
+    <h2>Final Standings</h2>
+    <table id="finalTable" class="table tablestriped">
+    <style>
+        th {
+            cursor: pointer;
+        }
+    </style>
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Player<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(1)">Wins<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(2)">Losses<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(3)">Draws<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(4)">Final Points<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+                <tr>
+                    <td> {{ data["name"] }} </td>
+                    <td> {{ data["win"] }} </td>
+                    <td> {{ data["loss"] }} </td>
+                    <td> {{ data["draw"] }} </td>
+                    <td> {{ data["points"]}} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script src="static/script.js"></script>
+{% endblock %}

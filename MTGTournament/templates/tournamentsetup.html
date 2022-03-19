@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Set up a tournament
+{% endblock %}
+
+{% block main %}
+
+    <div class="form-group mb-3">
+        <form action="/create" method="post">
+            <label class="control-label fs-5" for="create">Set up a tournament:</label>
+            <input autocomplete="off" autofocus class="mx-auto w-auto" id="create" name="create" placeholder="New tournament" type="text">
+            <button class="btn btn-outline-primary" type="submit">Create</button>
+        </form>
+    </div>
+
+    <div class="form-group mb-3">
+        <form action="/add" method="post">
+            <label class="control-label fs-5" for="add">Add a player to a tournament:</label>
+            <select id="add" name="add" class="mx-auto w-auto">
+                <option disabled selected>Player</option>
+                {% for players in players %}
+                <option> {{ players["name"] }}</option>
+                {% endfor%}
+            </select>
+            <select id="select" name="select" class="mx-auto w-auto">
+                <option disabled selected>Tournament</option>
+                {% for tournament in tournament %}
+                <option>{{ tournament["name"] }}</option>
+                {% endfor %}
+            </select>
+        <button class="btn btn-outline-success" type="submit">Add</button>
+        </form>
+    </div>
+
+    <div class="form-group mb-3">
+        <form action="/change" method="post">
+            <label class="control-label fs-5" for="change">Change Tournament:</label>
+            <select id="change" name="change" class="mx-auto w-auto mb-3">
+                <option disabled selected>Tournament</option>
+                <option>Overall Results</option>
+                {% for tournament in tournament %}
+                <option>{{ tournament["name"] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-outline-danger" type="submit">Change</button>
+        </form>
+    </div>
+
+    <h3>Current Players: {{ tournamentName }}</h2>
+    <table id="eloTable" class="table tablestriped">
+    <style>
+        th {
+            cursor: pointer;
+        }
+    </style>
+        <thead>
+            <tr>
+                <th onclick="sortTable(1)">Name<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(2)">Elo<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+                <tr>
+                    <td> {{ data["name"] }} </td>
+                    <td> {{ data["elo"] }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script src="static/script.js"></script>
+{% endblock %}

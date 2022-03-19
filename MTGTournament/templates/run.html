@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Run a tournament
+{% endblock %}
+
+{% block main %}
+    <div class="form-group mb-3">
+        <form action="/run" method="post">
+            <label class="control-label fs-5">Start a tournament:</label>
+            <select id="pick" name="pick" class="mx-auto w-auto mb-3">
+                <option disabled selected>Tournament</option>
+                {% for tournament in tournament %}
+                <option>{{ tournament["name"] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-outline-danger" type="submit">Start</button>
+        </form>
+    </div>
+    <div class="form-group mb-3">
+        <form action="/select" method="post">
+            <label class="control-label fs-5">Select a tournament tracker:</label>
+            <select id="select" name="select" class="mx-auto w-auto mb-3">
+                <option disabled selected>Tournament</option>
+                {% for tracker in tracker %}
+                <option>{{ tracker["name"] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-outline-danger" type="submit">Select</button>
+        </form>
+    </div>
+    <div class="form-group mb-3">
+        <form action="/reportTournament" method="post">
+        <label class="control-label fs-5"">Report a result in:</label>
+            <select id="select" name="select" class="mx-auto w-auto mb-3">
+                <option disabled selected>Tournament</option>
+                {% for tracker in tracker %}
+                <option>{{ tracker["name"] }}</option>
+                {% endfor %}
+            </select>
+        <div class="mb-2">
+            <label class="control-label fs-5">Player 1:</label>
+            <select id="player1" name="player1" class="mx-auto w-auto mb-3">
+                <option disabled selected>Player 1</option>
+                {% for players in players %}
+                <option>{{ players["player1"] }}</option>
+                {% endfor %}
+            </select>
+            <select id="player1Score" name="player1Score">
+                <option disabled selected>Score</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+        <div class="mb-2">
+            <label class="control-label fs-5" >Player 2:</label>
+            <select id="player2" name="player2" class="mx-auto w-auto mb-3">
+                <option disabled selected>Player 2</option>
+                {% for players in players %}
+                <option>{{ players["player1"] }}</option>
+                {% endfor %}
+            </select>
+            <select id="player2Score" name="player2Score">
+                <option disabled selected>Score</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Report</button>
+    </form>
+    </div>
+    <div class="form-group mb-3">
+        <form action="/newRound" method="post">
+            <label class="control-label fs-5">Next round: {{ tournamentName }}</label>
+            <select id="select" name="select" class="mx-auto w-auto mb-3">
+                <option disabled selected>Tournament</option>
+                {% for tracker in tracker %}
+                <option>{{ tracker["name"] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary mb-3" type="submit">Next Round</button>
+        </form>
+    </div>
+    <div class="form-group mb-3" >
+        <form action="/endTournament" method="post">
+            <label class="control-label fs-5">End tournament: {{ tournamentName }}</label>
+            <select id="select" name="select" class="mx-auto w-auto mb-3">
+                <option disabled selected>Tournament</option>
+                {% for tournament in tournament %}
+                <option>{{ tournament["name"] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary mb-3" type="submit">End Tournament</button>
+        </form>
+    </div>
+    <table id="eloTable" class="table tablestriped">
+    <style>
+        th {
+            cursor: pointer;
+        }
+    </style>
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Round<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(1)">Table<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(2)">Player 1<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(3)">Player 2<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(4)">Result<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+                <th onclick="sortTable(5)">Live Points<i class="fa-solid fa-sort" style="padding-left:10px"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+                <tr>
+                    <td> {{ data["round"] }} </td>
+                    <td> {{ data["tableNumber"] }} </td>
+                    <td> {{ data["player1"] }} </td>
+                    <td> {{ data["player2"] }} </td>
+                    <td> {{ data["player1score"]}}-{{ data["player2score"] }}
+                    <td> {{ data["player1points"] }}-{{ data["player2points"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script src="static/script.js"></script>
+{% endblock %}
