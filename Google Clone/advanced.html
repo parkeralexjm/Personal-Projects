@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+        <link href="C:\Users\parke\Downloads\Google\static\styles.css" rel="stylesheet">
+        <title>Search</title>
+    </head>
+    <body>
+        <nav class="navbar justify-content-end">
+            <div class="p-2">
+                <a href="index.html" class="text-dark px-2">Google Search</a>
+            </div>
+        </nav>
+        
+        <div class="container-fluid small">
+            <form action="https://www.google.com/search">
+                <h5 class="text-danger row p-4">Advanced Search</h5>
+                <div>
+                <!--q is all words, epq is exact word or phrase, oq is any words, eq is none of these words-->
+                <div class="row p-2">
+                    <label class="col-2 for="as_q">all these words:</label>
+                    <input class="col" type="text" autocomplete="off" name="as_q" id="as_q">
+                    <div class="col">
+                        <span id="as_qHelpInline" class="form-text">
+                            Type the important words: tri-colour rat terrier
+                        </span>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <label class="col-2" for="as_epq">this exact word or phrase:</label>
+                    <input class="col" type="text" autocomplete="off" name="as_epq" id="as_epq">
+                    <div class="col">
+                        <span id="as_epqHelpInline" class="form-text">
+                            Put exact words in quotes: "rat terrier"
+                        </span>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <label class="col-2" for="as_oq">any of these words:</label>
+                    <input class="col" type="text" autocomplete="off" name="as_oq" id="as_oq">
+                    <div class="col">
+                        <span id="as_oqHelpInline" class="form-text">
+                            Type OR between all the words you want: miniature OR standard
+                        </span>
+                    </div>                
+                </div>
+                <div class="row p-2">
+                    <label class="col-2" for="as_eq">none of these words:</label>
+                    <input class="col" type="text" autocomplete="off" name="as_eq" id="as_eq">
+                    <div class="col">
+                    <span id="as_eqHelpInline" class="form-text">
+                        Put a minus sign just before words that you don't want: -rodent, -"Jack Russell"
+                    </span>
+                    </div>
+                </div>  
+                <div class="d-md-flex justify-content-md-end p-3">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Advanced Search">
+                </div>
+            </div>
+            </form>
+        </div>
+    </body>
+</html>

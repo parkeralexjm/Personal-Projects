@@ -1,0 +1,36 @@
+nav {
+    font-size: 90%;
+}
+
+#main {
+    text-align:center;
+}
+
+a:link {
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.rcorners{
+    border-radius:25px;
+    padding:10px;
+    padding-left:5;
+    border-color:lightgrey;
+    border-width:2px;
+    border-style:solid; 
+}
+
+.rcorners:focus{
+    outline:none;
+    box-shadow:7px 3px 3px lightgrey;
+}
+.rcorners:hover{
+    outline:none;
+    box-shadow:7px 3px 3px lightgrey;
+}
+
+.btn{
+    font-size: 95%;
+}
